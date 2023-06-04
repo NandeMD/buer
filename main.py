@@ -62,7 +62,7 @@ while True:
 
         for p in paths:
             if p.is_dir():
-                final_dest = p.parent.joinpath(f"{str(p).replace('/', '-')}__{datetime.now().isoformat()}")
+                final_dest = DEST.joinpath(f"{str(p).replace('/', '-')}__{datetime.now().isoformat()}")
                 shutil.make_archive(str(final_dest), "xztar", str(p.absolute()))
                 print_info(f"{final_dest}.tar.xz")
             elif p.is_file():
@@ -73,7 +73,7 @@ while True:
                     lzma.CHECK_SHA256,
                     9
                 )
-                final_dest = p.parent.joinpath(f"{str(p.absolute()).replace('/', '-')}__{datetime.now().isoformat()}.lzma")
+                final_dest = DEST.joinpath(f"{str(p.absolute()).replace('/', '-')}__{datetime.now().isoformat()}.lzma")
                 final_dest.write_bytes(compressed_data)
                 print_info(str(final_dest))
             else:
